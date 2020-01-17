@@ -1,4 +1,8 @@
-project('stm32-libopencm3-meson-blink', 'c')
+project(
+    'stm32-libopencm3-meson-blink',
+    'c',
+    default_options: [ 'buildtype=plain' ]
+)
 
 common_flags = [
     '-mcpu=cortex-m3',
