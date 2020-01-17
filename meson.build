@@ -37,4 +37,7 @@ bin = custom_target('bin',
     depends: exe
 )
 
-run_target('flash', command: [find_program('stm32flash'), '-w', bin.full_path(), '-b', '115200', '-g', '0', '/dev/ttyUSB0'], depends: bin)
+stm32flash = find_program('stm32flash', required: false)
+if stm32flash.found()
+    run_target('flash', command: [ stm32flash, '-w', bin.full_path(), '-b', '115200', '-g', '0', '/dev/ttyUSB0' ], depends: bin)
+endif
